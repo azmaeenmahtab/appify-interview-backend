@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth';
+import postRoutes from './routes/posts';
+import commentRoutes from './routes/comments';
 import dotenv from 'dotenv';
 import pool from './config/db';
 
@@ -16,6 +18,8 @@ app.use(express.json());
 
 
 app.use('/auth', authRoutes);
+app.use('/posts', postRoutes);
+app.use('/', commentRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
