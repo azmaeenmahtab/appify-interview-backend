@@ -46,3 +46,11 @@ export const login = async (req: Request, res: Response) => {
   const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
   return res.json({ token, user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email } });
 };
+
+export const verify = async (req: Request, res: Response) => {
+  // User is already attached to req by verifyToken middleware
+  return res.json({ 
+    valid: true, 
+    user: req.user
+  });
+};
